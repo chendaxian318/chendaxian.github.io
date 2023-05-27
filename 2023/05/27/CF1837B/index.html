@@ -22,30 +22,33 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="间歇性学习，持续性躺平">
-<meta property="og:type" content="website">
-<meta property="og:title" content="西西弗斯的巨石">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="该博客用于记录日常cf刷题，旨在每日整理所写过的题目 1837BMore info: 题目 题意:1给定一个只含&amp;#x27;&gt;&amp;#x27;,&amp;#x27;&lt;&amp;#x27;的字符串，需要创建一个在&amp;#x27;&gt;&amp;#x27;,&amp;#x27;&lt;&amp;#x27;左右填上数字,使得符合字符串的大小比较，且使用的不同的数字的个数最小 思路:123检测i与i+1位置上的字符是否相等，若相等则i+1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF练习记录">
+<meta property="og:url" content="http://example.com/2023/05/27/CF1837B/index.html">
 <meta property="og:site_name" content="西西弗斯的巨石">
-<meta property="og:description" content="间歇性学习，持续性躺平">
+<meta property="og:description" content="该博客用于记录日常cf刷题，旨在每日整理所写过的题目 1837BMore info: 题目 题意:1给定一个只含&amp;#x27;&gt;&amp;#x27;,&amp;#x27;&lt;&amp;#x27;的字符串，需要创建一个在&amp;#x27;&gt;&amp;#x27;,&amp;#x27;&lt;&amp;#x27;左右填上数字,使得符合字符串的大小比较，且使用的不同的数字的个数最小 思路:123检测i与i+1位置上的字符是否相等，若相等则i+1">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-27T00:13:35.000Z">
+<meta property="article:modified_time" content="2023-05-27T00:18:22.532Z">
 <meta property="article:author" content="chendaxian318">
+<meta property="article:tag" content="2023-5-27">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2023/05/27/CF1837B/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>西西弗斯的巨石</title>
+  <title>CF练习记录 | 西西弗斯的巨石</title>
   
 
 
@@ -178,9 +181,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -196,10 +200,9 @@
       <meta itemprop="name" content="西西弗斯的巨石">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/05/27/CF1837B/" class="post-title-link" itemprop="url">CF练习记录</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          CF练习记录
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -223,92 +226,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>该博客用于记录日常cf刷题，旨在每日整理所写过的题目</p>
+        <p>该博客用于记录日常cf刷题，旨在每日整理所写过的题目</p>
 <h2 id="1837B"><a href="#1837B" class="headerlink" title="1837B"></a>1837B</h2><p>More info: <a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1837/B">题目</a></p>
 <h3 id="题意"><a href="#题意" class="headerlink" title="题意:"></a>题意:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给定一个只含<span class="string">&#x27;&gt;&#x27;</span>,<span class="string">&#x27;&lt;&#x27;</span>的字符串，需要创建一个在<span class="string">&#x27;&gt;&#x27;</span>,<span class="string">&#x27;&lt;&#x27;</span>左右填上数字,使得符合字符串的大小比较，且使用的不同的数字的个数最小</span><br></pre></td></tr></table></figure>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">检测i与i+1位置上的字符是否相等，若相等则i+1为前一个位置的数+1或-1，</span><br><span class="line">若不相等，若i+1为<span class="string">&#x27;&gt;&#x27;</span>那么应该将i+1置为max-1;</span><br><span class="line">         若i+1为<span class="string">&#x27;&lt;&#x27;</span>那么应该将i+1置为min+1;</span><br></pre></td></tr></table></figure>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;map&gt;</span></span><br><span class="line"><span class="comment">#include&lt;algorithm&gt;</span></span><br><span class="line"><span class="comment">#include&lt;math.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;queue&gt;</span></span><br><span class="line"><span class="comment">#include&lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;set&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef pair&lt;int,int&gt;PII;</span><br><span class="line"> </span><br><span class="line">const int N=2e5+10;</span><br><span class="line"><span class="built_in">set</span>&lt;int&gt;Set;</span><br><span class="line">int a[110];</span><br><span class="line">string s;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	int t;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		memset(a,0,sizeof a);</span><br><span class="line">		int n;</span><br><span class="line">		cin&gt;&gt;n;</span><br><span class="line">		cin&gt;&gt;s;</span><br><span class="line">		Set.clear();</span><br><span class="line">		Set.insert(0);</span><br><span class="line">		a[0]=0;</span><br><span class="line">		int mmin=0,mmax=0;</span><br><span class="line">		<span class="keyword">if</span>(s[0]==<span class="string">&#x27;&gt;&#x27;</span>) a[1]=-1;</span><br><span class="line">		<span class="keyword">else</span> a[1]=1;</span><br><span class="line">		mmin=min(mmin,a[1]);</span><br><span class="line">		mmax=max(mmax,a[1]);</span><br><span class="line">		Set.insert(a[1]);</span><br><span class="line">		<span class="keyword">for</span>(int i=1;i&lt;n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(s[i]==s[i-1])</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(s[i]==<span class="string">&#x27;&gt;&#x27;</span>) a[i+1]=a[i]-1;</span><br><span class="line">				<span class="keyword">else</span> a[i+1]=a[i]+1;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> </span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(s[i]==<span class="string">&#x27;&gt;&#x27;</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					a[i+1]=mmax-1;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> a[i+1]=mmin+1;</span><br><span class="line">			&#125;</span><br><span class="line">			Set.insert(a[i+1]);</span><br><span class="line">			mmax=max(mmax,a[i+1]);</span><br><span class="line">			mmin=min(mmin,a[i+1]);</span><br><span class="line">		&#125;</span><br><span class="line">		//for(int i=0;i&lt;n;i++) cout&lt;&lt;<span class="string">&quot;a[i]=&quot;</span>&lt;&lt;<span class="string">a[i]&lt;&lt;endl;</span></span><br><span class="line"><span class="string">		cout&lt;&lt;Set.size()&lt;&lt;endl;</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/2023-5-27/" rel="tag"># 2023-5-27</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/12/CF1750C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="chendaxian318">
-      <meta itemprop="description" content="间歇性学习，持续性躺平">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西弗斯的巨石">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/04/12/CF1750C/" class="post-title-link" itemprop="url">CF练习记录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-04-12 22:58:35 / 修改时间：23:25:11" itemprop="dateCreated datePublished" datetime="2023-04-12T22:58:35+08:00">2023-04-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>该博客用于记录日常cf刷题，旨在每日整理所写过的题目</p>
-<h2 id="1750C"><a href="#1750C" class="headerlink" title="1750C"></a>1750C</h2><p>More info: <a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1750/C">题目</a></p>
-<h3 id="题意"><a href="#题意" class="headerlink" title="题意:"></a>题意:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">给定两个只含01的字符串s1,s2，可以进行以下操作：</span><br><span class="line">1.选择l~r区间，将s1中l~r区间的字符反转</span><br><span class="line">2.s2中非l~r区间内的字符也会随之反转</span><br><span class="line">且最多只可操作n+5次;</span><br><span class="line">目标将s1,s2全部化为0字符</span><br></pre></td></tr></table></figure>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用cnt记录s1中有多少个1，并使用一个数组b[N]，在出现过1的位置上进行减1，</span><br><span class="line">再在b[N]的每个位置上全部加上cnt；</span><br><span class="line">最后再用b[N]+s2去%2,即可得到处理完s1后s2中的数据情况</span><br><span class="line">若s2不满足全为0或全为1则该s1,s2无解</span><br><span class="line">若s2已满足全为0，则直接进行数据输出</span><br><span class="line">若s2全为1，则可再对s1进行一下三个区间操作，1~n,1~1,2~n，即可将s2全部转化为0；</span><br></pre></td></tr></table></figure>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;set&gt;</span></span><br><span class="line"><span class="comment">#include&lt;vector&gt;</span></span><br><span class="line"><span class="comment">#include&lt;algorithm&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">const int N=2e5+10;</span><br><span class="line">string s,s1;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	cin.tie(0);</span><br><span class="line">	int t=1;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		int n;</span><br><span class="line">		cin&gt;&gt;n;</span><br><span class="line">		cin&gt;&gt;s;</span><br><span class="line">		cin&gt;&gt;s1;</span><br><span class="line">		vector&lt;int&gt;b(n,0);</span><br><span class="line">		int cnt=0;</span><br><span class="line">		<span class="keyword">for</span>(int i=0;i&lt;n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(s[i]==<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				cnt++;</span><br><span class="line">				b[i]--;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(int i=0;i&lt;n;i++) b[i]+=cnt;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(int i=0;i&lt;n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			b[i]=(b[i]+(s1[i]-<span class="string">&#x27;0&#x27;</span>))%2;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">sort</span>(b.begin(),b.end());</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(b[0]==b[n-1])</span><br><span class="line">		&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;YES&quot;</span>&lt;&lt;<span class="string">endl;</span></span><br><span class="line"><span class="string">			if(b[n-1]==0)cout&lt;&lt;cnt&lt;&lt;endl</span>;</span><br><span class="line">			<span class="keyword">else</span> cout&lt;&lt;<span class="string">cnt+3&lt;&lt;endl;</span></span><br><span class="line"><span class="string">			for(int i=0;i&lt;n;i++)</span></span><br><span class="line"><span class="string">			&#123;</span></span><br><span class="line"><span class="string">				if(s[i]==&#x27;1&#x27;)</span></span><br><span class="line"><span class="string">				&#123;</span></span><br><span class="line"><span class="string">					cout&lt;&lt;i+1&lt;&lt;&quot; &quot;&lt;&lt;i+1&lt;&lt;endl;</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			if(b[n-1]==1)</span></span><br><span class="line"><span class="string">			&#123;</span></span><br><span class="line"><span class="string">				cout&lt;&lt;1&lt;&lt;&quot; &quot;&lt;&lt;n&lt;&lt;endl;</span></span><br><span class="line"><span class="string">				cout&lt;&lt;1&lt;&lt;&quot; &quot;&lt;&lt;1&lt;&lt;endl;</span></span><br><span class="line"><span class="string">				cout&lt;&lt;2&lt;&lt;&quot; &quot;&lt;&lt;n&lt;&lt;endl;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		else </span></span><br><span class="line"><span class="string">		&#123;</span></span><br><span class="line"><span class="string">			cout&lt;&lt;&quot;NO&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+        
 
 
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/04/12/CF1750C/" rel="prev" title="CF练习记录">
+      <i class="fa fa-chevron-left"></i> CF练习记录
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -361,6 +312,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1837B"><span class="nav-number">1.</span> <span class="nav-text">1837B</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题意:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">思路:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现:</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
