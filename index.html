@@ -184,6 +184,262 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/23/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B76G/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="chendaxian318">
+      <meta itemprop="description" content="间歇性学习，持续性躺平">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西弗斯的巨石">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/23/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B76G/" class="post-title-link" itemprop="url">牛客小白月赛76G</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-07-23 10:07:35 / 修改时间：10:22:38" itemprop="dateCreated datePublished" datetime="2023-07-23T10:07:35+08:00">2023-07-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>该博客用于记录日常cf刷题，旨在每日整理所写过的题目</p>
+<h2 id="1848C"><a href="#1848C" class="headerlink" title="1848C"></a>1848C</h2><p>More info: <a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1848/C">题目</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意:"></a>题意:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">给定一个长度为n的区间，区间内每个物品为报警物品的概率相同</span><br><span class="line">区间A一开始集合为1~n</span><br><span class="line">集合B为区间A的前半段</span><br><span class="line">对B内的物品进行检测，</span><br><span class="line">若B报警且B的集合大小为1时结束</span><br><span class="line">若B报警且B的集合大小不为1时继续</span><br><span class="line">若不报警则A集合内的元素变成原A集合的后半段</span><br><span class="line">如此反复下去，求操作次数的数学期望</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">由题意，我首先想到的思路是这实际上是一个二分查找过程，</span><br><span class="line">但最后实现成功后发现时间复杂度太高，会TLE</span><br><span class="line">查找题解后发现，设f[i]为处理区间的次数</span><br><span class="line">那么f[i]=f[i/2]+f[i-i/2]+i;</span><br><span class="line">且f[1]=1,f[2]=3,f[3]=7</span><br><span class="line">给定一个n只需先递归到边界条件，然后向上返回即可</span><br><span class="line">这样的时间复杂度大致为t*logn</span><br><span class="line">最大也只到1e7左右</span><br></pre></td></tr></table></figure>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;map&gt;</span></span><br><span class="line"><span class="comment">#include&lt;unordered_map&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef pair&lt;int,int&gt;PII;</span><br><span class="line">const int N=1e5+10,mod=998244353;</span><br><span class="line">ll n;</span><br><span class="line">ll f[N];</span><br><span class="line">unordered_map&lt;ll,ll&gt;mp;</span><br><span class="line">ll qmi(ll a,ll k,ll Mod)</span><br><span class="line">&#123;</span><br><span class="line">	ll temp=1;</span><br><span class="line">	<span class="keyword">while</span>(k&gt;0)</span><br><span class="line">	&#123;</span><br><span class="line">		//cout&lt;&lt;<span class="string">&quot;test01&quot;</span>&lt;&lt;<span class="string">endl;</span></span><br><span class="line"><span class="string">		if(k&amp;1) temp*=a;</span></span><br><span class="line"><span class="string">		temp%=Mod;</span></span><br><span class="line"><span class="string">		k=(k&gt;&gt;1);</span></span><br><span class="line"><span class="string">		a*=a;</span></span><br><span class="line"><span class="string">		a%=Mod;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	return temp%Mod;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">ll a[N],b[N];</span></span><br><span class="line"><span class="string">ll check(int x)</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">	if(x==1) return 1;</span></span><br><span class="line"><span class="string">	if(mp[x]) return mp[x];</span></span><br><span class="line"><span class="string">	ll temp=(check(x/2)+check(x-(x/2))+x)%mod;</span></span><br><span class="line"><span class="string">	return mp[x]=temp;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">void solve()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">	ll ans=1;</span></span><br><span class="line"><span class="string">	cin&gt;&gt;n;</span></span><br><span class="line"><span class="string">	ans=qmi(n,mod-2,mod);</span></span><br><span class="line"><span class="string">	//cout&lt;&lt;&quot;ans=&quot;&lt;&lt;ans&lt;&lt;endl</span>; </span><br><span class="line">	ll cnt=0;</span><br><span class="line">	</span><br><span class="line">		cnt+=check(n);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	cout&lt;&lt;(ans*cnt)%mod&lt;&lt;<span class="string">endl;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">int main()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">	ios::sync_with_stdio(0);</span></span><br><span class="line"><span class="string">	cin.tie(0);</span></span><br><span class="line"><span class="string">	mp[1]=1;</span></span><br><span class="line"><span class="string">	mp[2]=3;</span></span><br><span class="line"><span class="string">	mp[3]=7;</span></span><br><span class="line"><span class="string">	int t;</span></span><br><span class="line"><span class="string">	t=1;</span></span><br><span class="line"><span class="string">	cin&gt;&gt;t;</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">	while(t--)</span></span><br><span class="line"><span class="string">	&#123;</span></span><br><span class="line"><span class="string">		solve();</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/23/CF1848C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="chendaxian318">
+      <meta itemprop="description" content="间歇性学习，持续性躺平">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西弗斯的巨石">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/23/CF1848C/" class="post-title-link" itemprop="url">CF1848C</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-07-23 09:49:35 / 修改时间：10:03:28" itemprop="dateCreated datePublished" datetime="2023-07-23T09:49:35+08:00">2023-07-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>该博客用于记录日常cf刷题，旨在每日整理所写过的题目</p>
+<h2 id="1848C"><a href="#1848C" class="headerlink" title="1848C"></a>1848C</h2><p>More info: <a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1848/C">题目</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意:"></a>题意:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定两个长度为n的数组，一个为ai,一个为bi</span><br><span class="line">每进行一次操作，ci=|ai-bi|，ai=bi，bi=ci</span><br><span class="line">问经过任意次操作后。，是否可以使ai或bi全为0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">当a&gt;2b时，经过3次循环，a=a-2b,b=b;</span><br><span class="line">且当a或b中有一个为0时，3次一循环</span><br><span class="line">所以每次a=a%2b;然后按照题意进行变换</span><br><span class="line">当b为0时记录操作了多少次</span><br></pre></td></tr></table></figure>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;vector&gt;</span></span><br><span class="line"><span class="comment">#include&lt;algorithm&gt;</span></span><br><span class="line"><span class="comment">#include&lt;math.h&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef pair&lt;int,int&gt;PII;</span><br><span class="line">const int N=1e5+10;</span><br><span class="line">int a[N],b[N];</span><br><span class="line">int gcd(int x,int y,int u)</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(y==0) <span class="built_in">return</span> u;</span><br><span class="line">	x%=2*y;</span><br><span class="line">	<span class="built_in">return</span> gcd(y,abs(x-y),u+1);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">void <span class="function"><span class="title">solve</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	int n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(int i=0;i&lt;n;i++)cin&gt;&gt;a[i];</span><br><span class="line">	<span class="keyword">for</span>(int i=0;i&lt;n;i++)cin&gt;&gt;b[i];</span><br><span class="line">	vector&lt;int&gt;cnt;</span><br><span class="line">	<span class="keyword">for</span>(int i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]==0&amp;&amp;b[i]==0) <span class="built_in">continue</span>;</span><br><span class="line">		//if(b==0)cnt.push_back(1);</span><br><span class="line">		cnt.push_back(gcd(a[i],b[i],0));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(int i=0;i&lt;cnt.size();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(cnt[i]%3!=cnt[0]%3)</span><br><span class="line">		&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;NO&quot;</span>&lt;&lt;<span class="string">endl;</span></span><br><span class="line"><span class="string">			return ;</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	cout&lt;&lt;&quot;YES&quot;&lt;&lt;endl</span>;</span><br><span class="line">	<span class="built_in">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	int t;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		solve();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/23/CF1833E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="chendaxian318">
+      <meta itemprop="description" content="间歇性学习，持续性躺平">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西弗斯的巨石">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/23/CF1833E/" class="post-title-link" itemprop="url">CF1833E</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-07-23 09:40:35 / 修改时间：09:48:10" itemprop="dateCreated datePublished" datetime="2023-07-23T09:40:35+08:00">2023-07-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>该博客用于记录日常cf刷题，旨在每日整理所写过的题目</p>
+<h2 id="1833E"><a href="#1833E" class="headerlink" title="1833E"></a>1833E</h2><p>More info: <a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1833/E">题目</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意:"></a>题意:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">有n个人，他们每个人都记住一个与自己相邻的邻居</span><br><span class="line">求他们最多可以围成几个圈，最少能围几个圈</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">邻接表，然后dfs</span><br><span class="line">最多有几个圈，只需要去看他们一共被dfs次</span><br><span class="line">最少有几个圈，看有多少个首尾相连的圈，</span><br><span class="line">若其中还有未首尾相连的链表，纳闷最少的圈数需要加1</span><br></pre></td></tr></table></figure>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;vector&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">const int N=4e5+10;</span><br><span class="line">int h[N],e[N],ne[N],idx=0;</span><br><span class="line"></span><br><span class="line">int cnt1=0;</span><br><span class="line">int cnt2=0;</span><br><span class="line">int n;</span><br><span class="line">void add(int a,int b)</span><br><span class="line">&#123;</span><br><span class="line">	e[idx]=b;</span><br><span class="line">	ne[idx]=h[a];</span><br><span class="line">	h[a]=idx++;</span><br><span class="line">&#125;</span><br><span class="line">void dfs(int u,int target,int z,vector&lt;bool&gt;&amp;st)</span><br><span class="line">&#123;</span><br><span class="line">	st[u]=<span class="literal">true</span>;</span><br><span class="line">	//cout&lt;&lt;<span class="string">u&lt;&lt;&quot;-&gt;&quot;;</span></span><br><span class="line"><span class="string">	for(int i=h[u</span>];i!=-1;i=ne[i])</span><br><span class="line">	&#123;</span><br><span class="line">		</span><br><span class="line">		int j=e[i];</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(h[j]!=-1)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(!st[j])	dfs(j,target,z+1,st);</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(j==target&amp;&amp;z!=2)</span><br><span class="line">			&#123;</span><br><span class="line">				cnt1++;</span><br><span class="line">				<span class="built_in">return</span> ;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void <span class="function"><span class="title">solve</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">	memset(h,-1,sizeof h);</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	vector&lt;bool&gt;st(n+10,0);</span><br><span class="line">	cnt1=0;</span><br><span class="line">	cnt2=0;</span><br><span class="line">	<span class="keyword">for</span>(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">		int x;</span><br><span class="line">		cin&gt;&gt;x;</span><br><span class="line">		add(i,x);</span><br><span class="line">		add(x,i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		//cout&lt;&lt;<span class="string">&quot;test01&quot;</span>&lt;&lt;<span class="string">endl;</span></span><br><span class="line"><span class="string">		if(!st[i])</span></span><br><span class="line"><span class="string">		&#123;</span></span><br><span class="line"><span class="string">			cnt2++;</span></span><br><span class="line"><span class="string">			dfs(i,i,1,st);</span></span><br><span class="line"><span class="string">			//cout&lt;&lt;endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(cnt1!=cnt2)</span><br><span class="line">	&#123;</span><br><span class="line">		cnt1++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	cout&lt;&lt;<span class="string">cnt1&lt;&lt;&quot; &quot;&lt;&lt;cnt2&lt;&lt;endl;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">int main()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">	int t;</span></span><br><span class="line"><span class="string">	t=1;</span></span><br><span class="line"><span class="string">	cin&gt;&gt;t;</span></span><br><span class="line"><span class="string">	while(t--)</span></span><br><span class="line"><span class="string">	&#123;</span></span><br><span class="line"><span class="string">		solve();</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/22/CF1826D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="chendaxian318">
+      <meta itemprop="description" content="间歇性学习，持续性躺平">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西弗斯的巨石">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/22/CF1826D/" class="post-title-link" itemprop="url">CF1826D</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-07-22 13:15:35 / 修改时间：13:15:28" itemprop="dateCreated datePublished" datetime="2023-07-22T13:15:35+08:00">2023-07-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>该博客用于记录日常cf刷题，旨在每日整理所写过的题目</p>
+<h2 id="1826D"><a href="#1826D" class="headerlink" title="1826D"></a>1826D</h2><p>More info: <a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1826/D">题目</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意:"></a>题意:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定一个长度为n的数组ai,选定一个区间l,r，</span><br><span class="line">定义一个值为l,r区间内最大的三个数之和-(r-l)</span><br><span class="line">求出这个数组中l,r区间的最大值为多少</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">循环i，以a[i]为这个区间内的一个值，</span><br><span class="line">然后求i-1的位置的最大值，以及求i+1的位置的最大值</span><br><span class="line">构造两个新的数组a1,a2;</span><br><span class="line">因为要求i前面的最大值以及i后面的最大值</span><br><span class="line">那么a1便按照i与右端点的位置进行构造 a1[i]=a[i]-(n-i);</span><br><span class="line">同理a2按照i与左端点的位置进行构造  a2[i]=a[i]-i;</span><br><span class="line">后面即可利用a1和a2创建前后缀最大值即可</span><br><span class="line">且通过画图发现，在构造a1,a2后</span><br><span class="line">最后的max1(i-1)+max2(i+1)+a[i]实际上多减去n，应当在结尾加上</span><br></pre></td></tr></table></figure>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;queue&gt;</span></span><br><span class="line"><span class="comment">#include&lt;vector&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">const int N=1e5+10;</span><br><span class="line">int a1[N],b[N],a2[N];</span><br><span class="line"></span><br><span class="line">void <span class="function"><span class="title">solve</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	int n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(int i=1;i&lt;=n;i++) cin&gt;&gt;b[i];</span><br><span class="line">	<span class="keyword">for</span>(int i=1;i&lt;=n;i++) a1[i]=b[i]-(n-i);</span><br><span class="line">	<span class="keyword">for</span>(int i=1;i&lt;=n;i++) a2[i]=b[i]-i;</span><br><span class="line">	vector&lt;int&gt;Max1(n+10,-0x3f3f3f3f),Max2(n+10,-0x3f3f3f3f);</span><br><span class="line">	<span class="keyword">for</span>(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		Max1[i]=max(Max1[i-1],a1[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(int i=n;i&gt;=1;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		Max2[i]=max(Max2[i+1],a2[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	int ans=-0x3f3f3f3f;</span><br><span class="line">	<span class="keyword">for</span>(int i=2;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ans=max(ans,b[i]+Max1[i-1]+Max2[i+1]+n);</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="string">ans&lt;&lt;endl;</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">int main()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">	int t;</span></span><br><span class="line"><span class="string">	t=1;</span></span><br><span class="line"><span class="string">	cin&gt;&gt;t;</span></span><br><span class="line"><span class="string">	while(t--)</span></span><br><span class="line"><span class="string">		solve(); </span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/19/CF1793D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -209,7 +465,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-07-19 12:19:35 / 修改时间：12:38:58" itemprop="dateCreated datePublished" datetime="2023-07-19T12:19:35+08:00">2023-07-19</time>
+              <time title="创建时间：2023-07-19 12:19:35 / 修改时间：20:33:25" itemprop="dateCreated datePublished" datetime="2023-07-19T12:19:35+08:00">2023-07-19</time>
             </span>
 
           
@@ -224,74 +480,10 @@
 
       
           <p>该博客用于记录日常cf刷题，旨在每日整理所写过的题目</p>
-<h2 id="1793C"><a href="#1793C" class="headerlink" title="1793C"></a>1793C</h2><p>More info: <a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1793/D">题目</a></p>
+<h2 id="1793D"><a href="#1793D" class="headerlink" title="1793D"></a>1793D</h2><p>More info: <a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1793/D">题目</a></p>
 <h3 id="题意"><a href="#题意" class="headerlink" title="题意:"></a>题意:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定两个长度为n的数组</span><br><span class="line">Mex为一个集合中最小未出现过的自然数，例如MEX（1,3,4）=2,Mex(1,2,3,5)=4</span><br><span class="line">在A与B数组中同时取l~r范围内的数，求有多少对l,r使得A,B数组内的Mex相等</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">以Mex的值来进行区分计算</span><br><span class="line">首先记录下A，B，数组内1所在的位置，只要他们不包含1在内，Mex就会等于1</span><br><span class="line">即符合条件。记录A中1为L，B中1为R，若L&gt;R,swap(L,R)</span><br><span class="line">由上可得满足条件的区间为(1,L-1),(L+1,R-1),(R+1,n);</span><br><span class="line">再由区间内有多少个子区间可由(1+len)*len/2可得</span><br><span class="line">然后再计算Mex为2有哪些满足条件，</span><br><span class="line">若Mex需要为2，首先需要把L~R这个范围都选中，</span><br><span class="line">若A，或B在这个范围内存在着2，那么他们的Mex就不可能为2</span><br><span class="line">直接跳过</span><br><span class="line">若都不在这个范围内，用l,r记录下他们的坐标点，</span><br><span class="line">满足条件的个数为(R-r)*(L-l);</span><br><span class="line">因为后续Mex为3是需要在Mex为2的条件下去计算，所以将L，R更新为l,r的值</span><br><span class="line">后续进行重复，可在O(n)的复杂度内完成计算</span><br></pre></td></tr></table></figure>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;algorithm&gt;</span></span><br><span class="line"><span class="comment">#include&lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;math.h&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">const int N=2e5+10;</span><br><span class="line">int pos1[N],pos2[N];</span><br><span class="line">ll f(int x)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">return</span> 1ll*x*(x+1)/2;</span><br><span class="line">&#125;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	int n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int x;</span><br><span class="line">		cin&gt;&gt;x;</span><br><span class="line">		pos1[x]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int x;</span><br><span class="line">		cin&gt;&gt;x;</span><br><span class="line">		pos2[x]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	ll ans=0;</span><br><span class="line">	int l=pos1[1],r=pos2[1];</span><br><span class="line">	<span class="keyword">if</span>(l&gt;r) swap(l,r);</span><br><span class="line">	ans+=f(l-1)+f(n-r)+f(r-l-1);</span><br><span class="line">	//cout&lt;&lt;<span class="string">&quot;ans=&quot;</span>&lt;&lt;<span class="string">ans&lt;&lt;endl;</span></span><br><span class="line"><span class="string">	for(int i=1;i&lt;=n;i++)</span></span><br><span class="line"><span class="string">	&#123;</span></span><br><span class="line"><span class="string">		if((pos1[i+1]&lt;l||pos1[i+1]&gt;r)&amp;&amp;(pos2[i+1]&lt;l||pos2[i+1]&gt;r))&#123;</span></span><br><span class="line"><span class="string">			int L=1,R=n;</span></span><br><span class="line"><span class="string">			if(i+1&lt;=n)&#123;</span></span><br><span class="line"><span class="string">				if(pos1[i+1]&lt;l) L=max(L,pos1[i+1]+1);</span></span><br><span class="line"><span class="string">				if(pos1[i+1]&gt;r) R=min(R,pos1[i+1]-1);</span></span><br><span class="line"><span class="string">				if(pos2[i+1]&lt;l) L=max(L,pos2[i+1]+1);</span></span><br><span class="line"><span class="string">				if(pos2[i+1]&gt;r) R=min(R,pos2[i+1]-1);</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			ans</span>+=1LL*(l-L+1)*(R-r+1);</span><br><span class="line">		&#125;</span><br><span class="line">		//cout&lt;&lt;<span class="string">&quot;ans=&quot;</span>&lt;&lt;<span class="string">ans&lt;&lt;endl;</span></span><br><span class="line"><span class="string">		l=min(l,min(pos1[i+1],pos2[i+1]));</span></span><br><span class="line"><span class="string">		r=max(r,max(pos1[i+1],pos2[i+1]));</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	cout&lt;&lt;ans</span>&lt;&lt;<span class="string">endl;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/27/%E6%B4%9B%E8%B0%B7P1883/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="chendaxian318">
-      <meta itemprop="description" content="间歇性学习，持续性躺平">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="西西弗斯的巨石">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/05/27/%E6%B4%9B%E8%B0%B7P1883/" class="post-title-link" itemprop="url">洛谷P1883</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-05-27 09:04:35 / 修改时间：09:10:41" itemprop="dateCreated datePublished" datetime="2023-05-27T09:04:35+08:00">2023-05-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>该博客用于记录洛谷刷题，旨在每日整理所写过的题目</p>
-<h2 id="P1883"><a href="#P1883" class="headerlink" title="P1883"></a>P1883</h2><p>More info: <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1883">题目</a></p>
-<h3 id="题意"><a href="#题意" class="headerlink" title="题意:"></a>题意:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">给定n个二次函数,f(1),f(2).......f(n),F(n)=max(f(1),f(2).....f(n));</span><br><span class="line">求x在0~1000区间上的F函数的最小值;</span><br></pre></td></tr></table></figure>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">由图像易知，F(n);应该类似于二次函数，由此使用三分去寻找最小的那个点</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">const int N=1e4+10;</span><br><span class="line">const double eps=1e-9;</span><br><span class="line">double a[N][3];</span><br><span class="line">int n;</span><br><span class="line">double  f(double x,int i)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">return</span> a[i][0]*x*x+a[i][1]*x+a[i][2];</span><br><span class="line">&#125;</span><br><span class="line">double  <span class="function"><span class="title">check</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	double l=0.0,r=1000.0;</span><br><span class="line">	double mmin1=-1e8,mmin2=-1e8;</span><br><span class="line">	<span class="keyword">while</span>(r-l&gt;eps)</span><br><span class="line">	&#123;</span><br><span class="line">		double m1=l+(r-l)/3;</span><br><span class="line">		double m2=l+(r-l)/3*2;</span><br><span class="line">		//cout&lt;&lt;<span class="string">&quot;m1=&quot;</span>&lt;&lt;<span class="string">m1&lt;&lt;endl;</span></span><br><span class="line"><span class="string">		//cout&lt;&lt;&quot;m2=&quot;&lt;&lt;m2&lt;&lt;endl;</span></span><br><span class="line"><span class="string">		mmin1=-1e8,mmin2=-1e8;</span></span><br><span class="line"><span class="string">		for(int i=0;i&lt;n;i++)</span></span><br><span class="line"><span class="string">		&#123;</span></span><br><span class="line"><span class="string">			mmin1=max(mmin1,f(m1</span>,i));</span><br><span class="line">			mmin2=max(mmin2,f(m2,i));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(mmin1&gt;mmin2) l=m1+eps;</span><br><span class="line">		<span class="keyword">else</span> r=m2-eps;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> l;</span><br><span class="line">&#125;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	cin.tie(0); </span><br><span class="line">	int t;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	double mmin;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		</span><br><span class="line">		cin&gt;&gt;n;</span><br><span class="line">		<span class="keyword">for</span>(int i=0;i&lt;n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(int j=0;j&lt;3;j++) cin&gt;&gt;a[i][j];</span><br><span class="line">		&#125;</span><br><span class="line">		mmin=-1e8;</span><br><span class="line">		double x=check();</span><br><span class="line">		//cout&lt;&lt;<span class="string">&quot;x=&quot;</span>&lt;&lt;<span class="string">x&lt;&lt;endl;</span></span><br><span class="line"><span class="string">		for(int i=0;i&lt;n;i++)</span></span><br><span class="line"><span class="string">		&#123;</span></span><br><span class="line"><span class="string">			mmin=max(mmin,f(x</span>,i));</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%.4f\n&quot;</span>,mmin);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -343,7 +535,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-01 23:11:20" itemprop="dateModified" datetime="2023-06-01T23:11:20+08:00">2023-06-01</time>
+                <time title="修改时间：2023-07-19 20:33:18" itemprop="dateModified" datetime="2023-07-19T20:33:18+08:00">2023-07-19</time>
               </span>
 
           
@@ -362,6 +554,76 @@
 <h3 id="题意"><a href="#题意" class="headerlink" title="题意:"></a>题意:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">给定一个长度为n的数列ai，求ai的子序列bi的最长长度k，满足b(i)&amp;b(i-1)!=0,其中2&lt;=i&lt;=k,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">进行dp，将每个ai看为一个二进制数，若在二进制表示中ai的第j位为1，</span><br><span class="line">那么ai是可以由所有第j位为1的数转移过来，所以ai的所有为1的位上应该变为为1的位上的最大值+1；</span><br><span class="line">dp[ji]=max(dp[j1],dp[j2]....dp[ji])+1;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">const int N=32;</span><br><span class="line">int dp[32];</span><br><span class="line"></span><br><span class="line">int <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	cin.tie(0);</span><br><span class="line">	int n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(int i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int x;</span><br><span class="line">		cin&gt;&gt;x;</span><br><span class="line">		int k=0;</span><br><span class="line">		<span class="keyword">for</span>(int j=0;j&lt;32;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>((x&gt;&gt;j)&amp;<span class="number">1</span>) k=max(dp[j]+<span class="number">1</span>,k);</span><br><span class="line">		&#125;</span><br><span class="line">		for(int j=<span class="number">0</span>;j&lt;<span class="number">32</span>;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			if((x&gt;&gt;j)&amp;<span class="number">1</span>) dp[j]=max(dp[j]+<span class="number">1</span>,k);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	int ans=<span class="number">0</span>;</span><br><span class="line">	for(int i=<span class="number">0</span>;i&lt;<span class="number">32</span>;i++) ans=max(ans,dp[i]);</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/27/%E6%B4%9B%E8%B0%B7P1883/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="chendaxian318">
+      <meta itemprop="description" content="间歇性学习，持续性躺平">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="西西弗斯的巨石">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/27/%E6%B4%9B%E8%B0%B7P1883/" class="post-title-link" itemprop="url">洛谷P1883</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-27 09:04:35" itemprop="dateCreated datePublished" datetime="2023-05-27T09:04:35+08:00">2023-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-19 20:33:19" itemprop="dateModified" datetime="2023-07-19T20:33:19+08:00">2023-07-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>该博客用于记录洛谷刷题，旨在每日整理所写过的题目</p>
+<h2 id="P1883"><a href="#P1883" class="headerlink" title="P1883"></a>P1883</h2><p>More info: <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1883">题目</a></p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意:"></a>题意:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">给定n个二次函数,f(1),f(2).......f(n),F(n)=max(f(1),f(2).....f(n));</span><br><span class="line">求x在0~1000区间上的F函数的最小值;</span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">由图像易知，F(n);应该类似于二次函数，由此使用三分去寻找最小的那个点</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">const int N=1e4+10;</span><br><span class="line">const double eps=1e-9;</span><br><span class="line">double a[N][3];</span><br><span class="line">int n;</span><br><span class="line">double  f(double x,int i)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">return</span> a[i][0]*x*x+a[i][1]*x+a[i][2];</span><br><span class="line">&#125;</span><br><span class="line">double  <span class="function"><span class="title">check</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	double l=0.0,r=1000.0;</span><br><span class="line">	double mmin1=-1e8,mmin2=-1e8;</span><br><span class="line">	<span class="keyword">while</span>(r-l&gt;eps)</span><br><span class="line">	&#123;</span><br><span class="line">		double m1=l+(r-l)/3;</span><br><span class="line">		double m2=l+(r-l)/3*2;</span><br><span class="line">		//cout&lt;&lt;<span class="string">&quot;m1=&quot;</span>&lt;&lt;<span class="string">m1&lt;&lt;endl;</span></span><br><span class="line"><span class="string">		//cout&lt;&lt;&quot;m2=&quot;&lt;&lt;m2&lt;&lt;endl;</span></span><br><span class="line"><span class="string">		mmin1=-1e8,mmin2=-1e8;</span></span><br><span class="line"><span class="string">		for(int i=0;i&lt;n;i++)</span></span><br><span class="line"><span class="string">		&#123;</span></span><br><span class="line"><span class="string">			mmin1=max(mmin1,f(m1</span>,i));</span><br><span class="line">			mmin2=max(mmin2,f(m2,i));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(mmin1&gt;mmin2) l=m1+eps;</span><br><span class="line">		<span class="keyword">else</span> r=m2-eps;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> l;</span><br><span class="line">&#125;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	cin.tie(0); </span><br><span class="line">	int t;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	double mmin;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		</span><br><span class="line">		cin&gt;&gt;n;</span><br><span class="line">		<span class="keyword">for</span>(int i=0;i&lt;n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(int j=0;j&lt;3;j++) cin&gt;&gt;a[i][j];</span><br><span class="line">		&#125;</span><br><span class="line">		mmin=-1e8;</span><br><span class="line">		double x=check();</span><br><span class="line">		//cout&lt;&lt;<span class="string">&quot;x=&quot;</span>&lt;&lt;<span class="string">x&lt;&lt;endl;</span></span><br><span class="line"><span class="string">		for(int i=0;i&lt;n;i++)</span></span><br><span class="line"><span class="string">		&#123;</span></span><br><span class="line"><span class="string">			mmin=max(mmin,f(x</span>,i));</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%.4f\n&quot;</span>,mmin);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -413,7 +675,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-01 23:11:20" itemprop="dateModified" datetime="2023-06-01T23:11:20+08:00">2023-06-01</time>
+                <time title="修改时间：2023-07-19 20:33:22" itemprop="dateModified" datetime="2023-07-19T20:33:22+08:00">2023-07-19</time>
               </span>
 
           
@@ -475,10 +737,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-05-27 08:13:35 / 修改时间：09:25:01" itemprop="dateCreated datePublished" datetime="2023-05-27T08:13:35+08:00">2023-05-27</time>
+              <time title="创建时间：2023-05-27 08:13:35" itemprop="dateCreated datePublished" datetime="2023-05-27T08:13:35+08:00">2023-05-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-19 20:33:21" itemprop="dateModified" datetime="2023-07-19T20:33:21+08:00">2023-07-19</time>
+              </span>
 
           
 
@@ -547,7 +815,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-19 12:20:22" itemprop="dateModified" datetime="2023-07-19T12:20:22+08:00">2023-07-19</time>
+                <time title="修改时间：2023-07-19 20:33:24" itemprop="dateModified" datetime="2023-07-19T20:33:24+08:00">2023-07-19</time>
               </span>
 
           
@@ -650,7 +918,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
